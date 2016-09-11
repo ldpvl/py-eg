@@ -1,5 +1,4 @@
 from collections import defaultdict
-from collections import OrderedDict
 
 
 class AnalyzedShare(object):
@@ -56,7 +55,7 @@ def analyze(trades):
 
         # The reason why yield is placed inside the for loop instead of outside
         # is mainly for flexibility - it allows us to analyze up to any chosen parts of the trade file
-        yield OrderedDict(sorted(analyzed_shares.items()))
+        yield analyzed_shares
 
 
 def analyze_file(file, output_file):
@@ -67,9 +66,9 @@ def analyze_file(file, output_file):
         for analyzed_shares in analyze(trades):
             pass
 
-        # for _, analyzed_share in analyzed_shares.items():
+        # for _, analyzed_share in sorted(analyzed_shares.items()):
         #     print(analyzed_share)
-        write_output_file(output_file, (str(x) for _, x in analyzed_shares.items()))
+        write_output_file(output_file, (str(x) for _, x in sorted(analyzed_shares.items())))
 
 
 def write_output_file(output_file, analyzed_shares):
