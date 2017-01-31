@@ -1,0 +1,18 @@
+this is a context line 1
+this is a context line 2
+this is a context line 3
+this is a context line 4
+this is a context line 5
+this is a context line 6
+this is a context line 7
+this is the main line containing KEYWORD
+this is some other context line a
+this is some other context line b
+this is some other context line c
+this is some other context line d
+this is some other context line e
+this is some other context line f
+this is some other context line g
+this is some other context line h
+this is some other context line i
+this is another line containing KEYWORD
