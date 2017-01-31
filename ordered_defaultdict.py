@@ -6,18 +6,42 @@ class OrderedDefaultDict(OrderedDict, defaultdict):
     pass
 
 
-analyzed_symbols = OrderedDefaultDict()
-analyzed_symbols.default_factory = lambda: int(0)
+class Cat(object):
+    def __init__(self, weight=None, name=None, age=None):
+        self.weight = weight
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return str(self.name) + ' weighs ' + str(self.weight) + 'kg and is ' + str(self.age) + ' year(s) old.'
 
 
-def add_to_analyzed_symbols(symbol_details):
-    analyzed_symbols[symbol_details[0]] += 1
+ordered_cats = OrderedDefaultDict()
+ordered_cats.default_factory = Cat
 
+ordered_cats['black cat'].weight = 5
+ordered_cats['black cat'].name = 'Coal'
+ordered_cats['black cat'].age = 1
+ordered_cats['white cat'].weight = 9
+ordered_cats['white cat'].name = 'Paper'
+ordered_cats['white cat'].age = 7
+ordered_cats['brown cat'].weight = 2
+ordered_cats['brown cat'].name = 'Turd'
+ordered_cats['brown cat'].age = 12
 
-test_data = ['c', 'd', 'b', 'b', 'a', 'b', 'e', 'e', 'e', 'a']
+# This will always print with guaranteed order
+print([str(x) for _, x in ordered_cats.items()])
 
-for x in test_data:
-    add_to_analyzed_symbols(x)
+random_cats = defaultdict(Cat)
+random_cats['black cat'].weight = 5
+random_cats['black cat'].name = 'Coal'
+random_cats['black cat'].age = 1
+random_cats['white cat'].weight = 9
+random_cats['white cat'].name = 'Paper'
+random_cats['white cat'].age = 7
+random_cats['brown cat'].weight = 2
+random_cats['brown cat'].name = 'Turd'
+random_cats['brown cat'].age = 12
 
-for x, y in analyzed_symbols.items():
-    print(x, y, sep=' count is ')
+# This will not guarantee order
+print([str(x) for _, x in random_cats.items()])
