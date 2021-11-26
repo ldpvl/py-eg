@@ -4,8 +4,13 @@ class Magnitude(object):
         self.name = name
 
     def __get__(self, instance, type):
-        print('Retrieving:', self.name)
-        return self.name
+        # the if statement is to account for the distinction
+        # between instance variables and class variables
+        if instance is None:
+            return self
+        else:
+            print('Retrieving:', self.name)
+            return instance.__dict__[self.name]
 
     def __set__(self, instance, value):
         try:
@@ -15,9 +20,12 @@ class Magnitude(object):
         except ValueError:
             raise ValueError('Value must be a number but given', value, 'instead')
 
+    def __del__(self, instance):
+        del instance.__dict__[self.name]
+
 
 class Foo:
-    x = Magnitude(name='earthquake')
+    x = Magnitude(name='earthquake') # can only be defined at the class level, not on a per-instance basis
     y = Magnitude(name='supernova')
 
     def __init__(self, description, earthquake, supernova):
@@ -26,5 +34,7 @@ class Foo:
         self.supernova = supernova
 
 foo = Foo('Bar', 5, 'a')
-foo.x
-foo.y
+print(Foo.x)
+print(foo.x)
+foo.x # Retrieving: earthquake
+foo.y # Retrieving: supernova

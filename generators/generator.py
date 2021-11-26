@@ -11,7 +11,7 @@ def increment(base=0):
 
 g = increment()
 print('initialised the generator')
-print("yielded 1st value:", next(g))
+print("yielded 1st value:", g.send(None))
 print("yielded 2nd value:", g.send(3))
 print("yielded 3rd value:", g.send(5))
 print("yielded 4th value:", next(g))
