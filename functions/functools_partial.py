@@ -1,5 +1,7 @@
 from functools import partial
 
+# partial is used to return a function with one (or more) of its argument "frozen/locked in"
+
 import math
 
 def distance(point_1, point_2):

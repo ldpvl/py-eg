@@ -34,7 +34,7 @@ class Foo:
         self.supernova = supernova
 
 foo = Foo('Bar', 5, 'a')
-print(Foo.x)
-print(foo.x)
+print(f'Foo.x: {Foo.x} of type {type(Foo.x)}')
+print(f'foo.x: {foo.x} of type {type(foo.x)}')
 foo.x # Retrieving: earthquake
 foo.y # Retrieving: supernova
