@@ -36,5 +36,5 @@ class Foo:
 foo = Foo('Bar', 5, 'a')
 print(f'Foo.x: {Foo.x} of type {type(Foo.x)}')
 print(f'foo.x: {foo.x} of type {type(foo.x)}')
-foo.x # Retrieving: earthquake
-foo.y # Retrieving: supernova
+print(foo.x) # Retrieving: earthquake
+print(foo.y) # Retrieving: supernova
